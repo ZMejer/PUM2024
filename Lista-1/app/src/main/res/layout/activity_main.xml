@@ -11,8 +11,7 @@
         android:id="@+id/question_counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pytanie 1/10"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="#010101"
@@ -24,12 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:indeterminate="false"
         android:max="10"
         android:minHeight="50dp"
         android:minWidth="200dp"
-        android:progress="1"
         android:progressTint="#486405"
         android:scaleY="2"/>
 
@@ -37,18 +35,17 @@
         android:id="@+id/question_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pytanie nr 1?"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         android:textColor="#010101"
         android:background="#d9d9d9"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:padding="20dp" />
 
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         card_view:contentPadding="20dp"
@@ -62,39 +59,34 @@
             <RadioButton android:id="@+id/answer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:background="@drawable/radio_button_background"
                 android:padding="15dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:text="Odp1"/>
+                android:textStyle="bold"/>
             <RadioButton android:id="@+id/answer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:background="@drawable/radio_button_background"
                 android:padding="15dp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:text="Odp2"/>
+                android:layout_marginTop="20dp"/>
             <RadioButton android:id="@+id/answer3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:background="@drawable/radio_button_background"
                 android:padding="15dp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:text="Odp3"/>
+                android:layout_marginTop="20dp"/>
             <RadioButton android:id="@+id/answer4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:background="@drawable/radio_button_background"
                 android:padding="15dp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:text="Odp4"/>
+                android:layout_marginTop="20dp"/>
         </RadioGroup>
     </androidx.cardview.widget.CardView>
 
@@ -102,7 +94,7 @@
         android:id="@+id/submit_button"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
