@@ -3,12 +3,15 @@ package com.example.quiz
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -102,13 +105,44 @@ class MainActivity : AppCompatActivity() {
         progressBar.progress = questionIndex + 1
     }
 
+    private var scoredPoints = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val scoredPointsText = findViewById<TextView>(R.id.scored_points)
+        scoredPointsText.visibility = View.GONE
+
         loadQuestion(questionCount)
         val submitButton = findViewById<Button>(R.id.submit_button)
         submitButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#dde6c5"))
+
+        submitButton.setOnClickListener {
+            val radioButtons = listOf(R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4)
+            val selectedAnswerIndex = radioButtons.indexOfFirst { id ->
+                findViewById<RadioButton>(id).isChecked
+            }
+
+            if (selectedAnswerIndex == questions[questionCount].correctAnswerIndex) {
+                scoredPoints++
+            }
+
+            if (questionCount<questions.size-1) {
+                questionCount++
+                loadQuestion(questionCount)
+            }
+            else {
+                submitButton.isEnabled = false
+                findViewById<TextView>(R.id.question_counter).text = "Gratulacje"
+                findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+                findViewById<TextView>(R.id.question_content).visibility = View.GONE
+                findViewById<RadioGroup>(R.id.radio_group).visibility = View.GONE
+                findViewById<Button>(R.id.submit_button).visibility = View.GONE
+                scoredPointsText.text = "Zdobyłeś ${scoredPoints*10} pkt"
+                scoredPointsText.visibility = View.VISIBLE
+            }
+        }
 
 
     }
