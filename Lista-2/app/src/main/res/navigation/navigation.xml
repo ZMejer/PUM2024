@@ -61,6 +61,19 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentA"
             app:destination="@id/fragmentA" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentWelcome"
+            app:destination="@id/fragmentWelcome" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentWelcome"
+        android:name="com.example.loginapp.FragmentWelcome"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_fragmentWelcome_to_fragmentA"
+            app:destination="@id/fragmentA" />
     </fragment>
 
 </navigation>

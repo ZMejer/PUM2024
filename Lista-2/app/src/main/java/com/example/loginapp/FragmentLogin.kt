@@ -28,6 +28,11 @@ class FragmentLogin : Fragment() {
             Navigation.findNavController(requireView()).navigate(action)
         }
 
+        binding.LoginSubmitButton.setOnClickListener {
+            val action = FragmentLoginDirections.actionFragmentLoginToFragmentWelcome()
+            Navigation.findNavController(requireView()).navigate(action)
+        }
+
         return binding.root
     }
 
