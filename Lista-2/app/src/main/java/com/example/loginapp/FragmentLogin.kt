@@ -29,8 +29,16 @@ class FragmentLogin : Fragment() {
         }
 
         binding.LoginSubmitButton.setOnClickListener {
-            val action = FragmentLoginDirections.actionFragmentLoginToFragmentWelcome()
-            Navigation.findNavController(requireView()).navigate(action)
+            val username = binding.loginLoginInput.text.toString()
+            val password = binding.loginPasswordInput.text.toString()
+
+            if(UserDatabase.login(username,password)){
+                val action = FragmentLoginDirections.actionFragmentLoginToFragmentWelcome(username)
+                Navigation.findNavController(requireView()).navigate(action)
+            }
+            else {
+                binding.LoginErrorMessage.text = "Błędne hasło lub użytkownik nie istnieje."
+            }
         }
 
         return binding.root

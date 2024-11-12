@@ -19,6 +19,8 @@ class FragmentWelcome : Fragment() {
     ): View? {
         binding = FragmentWelcomeBinding.inflate(layoutInflater)
 
+        binding.textView2.text="Witaj "+arguments?.getString("uname").toString()
+
         binding.LogoutButton.setOnClickListener {
             val action = FragmentWelcomeDirections.actionFragmentWelcomeToFragmentA()
             Navigation.findNavController(requireView()).navigate(action)

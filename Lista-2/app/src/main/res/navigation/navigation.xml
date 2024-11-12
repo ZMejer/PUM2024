@@ -74,6 +74,9 @@
         <action
             android:id="@+id/action_fragmentWelcome_to_fragmentA"
             app:destination="@id/fragmentA" />
+        <argument
+            android:name="uname"
+            app:argType="string" />
     </fragment>
 
 </navigation>
