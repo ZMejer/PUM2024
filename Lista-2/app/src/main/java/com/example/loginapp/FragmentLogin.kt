@@ -6,27 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.loginapp.databinding.FragmentABinding
+import com.example.loginapp.databinding.FragmentLoginBinding
 
+class FragmentLogin : Fragment() {
 
-class FragmentA : Fragment() {
-
-    private lateinit var binding: FragmentABinding
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
+        binding = FragmentLoginBinding.inflate(layoutInflater)
 
-        binding = FragmentABinding.inflate(layoutInflater)
-
-        binding.RegisterButton.setOnClickListener {
-            val action = FragmentADirections.actionFragmentAToFragmentRegister()
+        binding.RegisterBtn.setOnClickListener {
+            val action = FragmentLoginDirections.actionFragmentLoginToFragmentRegister()
             Navigation.findNavController(requireView()).navigate(action)
         }
 
-        binding.LoginButton.setOnClickListener {
-            val action = FragmentADirections.actionFragmentAToFragmentLogin()
+        binding.fabA.setOnClickListener {
+            val action = FragmentLoginDirections.actionFragmentLoginToFragmentA()
             Navigation.findNavController(requireView()).navigate(action)
         }
 
