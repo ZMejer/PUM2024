@@ -5,18 +5,21 @@ data class Exercise(
     val points: Int
 ) {
     companion object {
-        fun generateExercise(): Exercise {
+        fun generateExercise(num: Int): MutableList<Exercise> {
             val letters = CharRange('A','Z').toMutableList()
-            val randLength = (0..20).random()
-            val contentList = mutableListOf<String>()
-            for(i in 0 until randLength) {
-                val randLetter = letters.random()
-                contentList.add(randLetter+"")
+            val randLength = (10..50).random()
+            val exercises = mutableListOf<Exercise>()
+            for(i in 0 until num) {
+                val contentList = mutableListOf<String>()
+                for (i in 0 until randLength) {
+                    val randLetter = letters.random()
+                    contentList.add(randLetter + "")
+                }
+                val finalContent = contentList.joinToString("")
+                val finalPoints = (0..10).random()
+                exercises.add(Exercise(finalContent,finalPoints))
             }
-            val finalContent = contentList.joinToString("")
-            val finalPoints = (0..10).random()
-
-            return Exercise(finalContent,finalPoints)
+            return exercises
         }
     }
 }

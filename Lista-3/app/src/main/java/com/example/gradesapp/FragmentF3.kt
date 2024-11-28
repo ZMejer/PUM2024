@@ -18,6 +18,10 @@ class FragmentF3 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentF3Binding.inflate(inflater)
+        binding.recyclerView.apply {
+            adapter = ExercisesAdapter(ExercisesData.wordList)
+            layoutManager = LinearLayoutManager(requireContext())
+        }
         binding.subject.text=arguments?.getString("subject").toString()
         return binding.root
     }
