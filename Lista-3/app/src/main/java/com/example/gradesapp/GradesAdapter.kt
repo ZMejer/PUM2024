@@ -18,7 +18,9 @@ class GradesAdapter(private val wordList: List<Pair<String, Double>>) : Recycler
 
         override fun onBindViewHolder(holder: GradesViewHolder, position: Int) {
             val currentItem = wordList[position]
-            holder.bind(currentItem.toString())
+            val subject = currentItem.first.toString()
+            val average = currentItem.second.toString()
+            holder.bind(subject,"Średnia: "+average)
         }
 
 

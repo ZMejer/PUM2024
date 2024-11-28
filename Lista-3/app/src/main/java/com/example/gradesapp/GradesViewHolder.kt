@@ -7,7 +7,8 @@ import com.example.loginapp.databinding.GradesBinding
 class GradesViewHolder(private val binding: GradesBinding) :
     RecyclerView.ViewHolder(binding.root){
 
-    fun bind(item: String){
-        binding.singleWord.text = item
+    fun bind(subjectItem: String, averageItem: String){
+        binding.subject.text = subjectItem
+        binding.average.text = averageItem
     }
 }
