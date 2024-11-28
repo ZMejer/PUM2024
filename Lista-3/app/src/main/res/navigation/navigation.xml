@@ -27,5 +27,9 @@
     <argument
         android:name="subject"
         app:argType="string" />
+        <argument
+            android:name="list_count"
+            app:argType="integer"
+            />
     </fragment>
 </navigation>

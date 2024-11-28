@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loginapp.databinding.ExercisesBinding
 
-class ExercisesAdapter(private val wordList: MutableList<String>) : RecyclerView.Adapter<ExercisesViewHolder>(){
+class ExercisesAdapter(private val wordList: MutableList<Exercise>) : RecyclerView.Adapter<ExercisesViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExercisesViewHolder {
         return ExercisesViewHolder(
             ExercisesBinding.inflate(
@@ -18,7 +18,7 @@ class ExercisesAdapter(private val wordList: MutableList<String>) : RecyclerView
 
     override fun onBindViewHolder(holder: ExercisesViewHolder, position: Int) {
         val currentItem = wordList[position]
-        holder.bind(currentItem)
+        holder.bind(currentItem.toString())
     }
 
 }

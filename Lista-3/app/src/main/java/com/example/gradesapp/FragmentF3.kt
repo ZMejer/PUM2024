@@ -18,11 +18,20 @@ class FragmentF3 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentF3Binding.inflate(inflater)
+
+        val subj = arguments?.getString("subject").toString()
+        val listCount = arguments?.getInt("listCount")
+
+        binding.subject.text = subj
+
+        val allExerciseLists = ExerciseList.Companion.ExerciseListProvider.allExerciseLists
+        val matchingList = allExerciseLists.filter { it.subject.name == subj }[listCount!!]
+        val exercList = matchingList.exercises
         binding.recyclerView.apply {
-            adapter = ExercisesAdapter(ExercisesData.wordList)
+            adapter = ExercisesAdapter(exercList)
             layoutManager = LinearLayoutManager(requireContext())
         }
-        binding.subject.text=arguments?.getString("subject").toString()
+
         return binding.root
     }
 }

@@ -26,11 +26,11 @@ class FragmentF1 : Fragment() {
                 val currentIndex = ExerciseList.Companion.ExerciseListProvider.allExerciseLists.indexOf(clickedItem)
 
                 val listCount = ExerciseList.Companion.ExerciseListProvider.allExerciseLists
-                    .subList(0, currentIndex + 1)
-                    .count { it.subject == clickedItem.subject }
+                    .subList(0, currentIndex+1)
+                    .count { it.subject == clickedItem.subject  }
 
                 val subj = clickedItem.subject.name
-                val action = FragmentF1Directions.actionFragmentF1ToFragmentF3("$subj \n Lista $listCount")
+                val action = FragmentF1Directions.actionFragmentF1ToFragmentF3(subj,listCount)
                 Navigation.findNavController(requireView()).navigate(action)
             }
 
