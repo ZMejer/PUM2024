@@ -7,7 +7,7 @@ import com.example.loginapp.databinding.ListBinding
 
     class WordListAdapter(// od
         private val exerciseList: MutableList<ExerciseList>,
-        private val onItemClick: (String) -> Unit
+        private val onItemClick: (ExerciseList) -> Unit
         // do
         )
         : RecyclerView.Adapter<WordListViewHolder>() {
@@ -18,7 +18,7 @@ import com.example.loginapp.databinding.ListBinding
                 LayoutInflater.from(parent.context), parent, false
             )
         )//od
-        {onItemClick(exerciseList[it].exercises.toString())}
+        {onItemClick(exerciseList[it])}
             //do
     } // wywolywana gdy potrdzeba nowego widoku do wysweitlania
 

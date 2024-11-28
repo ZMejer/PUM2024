@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.loginapp.databinding.FragmentF3Binding
 
@@ -17,8 +18,7 @@ class FragmentF3 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentF3Binding.inflate(inflater)
-
-
+        binding.subject.text=arguments?.getString("subject").toString()
         return binding.root
     }
 }

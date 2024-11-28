@@ -23,5 +23,9 @@
         android:id="@+id/fragmentF3"
         android:name="com.example.gradesapp.FragmentF3"
         android:label="fragment_f3"
-        tools:layout="@layout/fragment_f3" />
+        tools:layout="@layout/fragment_f3">
+    <argument
+        android:name="subject"
+        app:argType="string" />
+    </fragment>
 </navigation>

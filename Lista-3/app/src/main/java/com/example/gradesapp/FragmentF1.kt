@@ -22,14 +22,22 @@ class FragmentF1 : Fragment() {
         binding = FragmentF1Binding.inflate(inflater)
 
         binding.recyclerView.apply {
-            // od
-            adapter = WordListAdapter(ExerciseList.Companion.ExerciseListProvider.allExerciseLists){
-                Toast.makeText(requireContext(), "Clicked + $it", Toast.LENGTH_SHORT).show()
+            adapter = WordListAdapter(ExerciseList.Companion.ExerciseListProvider.allExerciseLists) { clickedItem ->
+                val currentIndex = ExerciseList.Companion.ExerciseListProvider.allExerciseLists.indexOf(clickedItem)
+
+                val listCount = ExerciseList.Companion.ExerciseListProvider.allExerciseLists
+                    .subList(0, currentIndex + 1)
+                    .count { it.subject == clickedItem.subject }
+
+                val subj = clickedItem.subject.name
+                val action = FragmentF1Directions.actionFragmentF1ToFragmentF3("$subj \n Lista $listCount")
+                Navigation.findNavController(requireView()).navigate(action)
             }
-            // do
-            layoutManager = LinearLayoutManager(requireContext()) // kontekst
+
+            layoutManager = LinearLayoutManager(requireContext())
         }
 
         return binding.root
     }
 }
+// kontekst (requireContext())

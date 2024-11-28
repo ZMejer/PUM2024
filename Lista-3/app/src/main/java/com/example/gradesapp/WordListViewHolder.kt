@@ -6,7 +6,7 @@ import com.example.loginapp.databinding.ListBinding
 class WordListViewHolder(
     private val binding: ListBinding,
     // od
-    onItemClick: (Int) -> Unit // bo list.xml, WordListItemBinding na github
+    onItemClick: (Int) -> Unit
     // do
 ) :
     RecyclerView.ViewHolder(binding.root) {
