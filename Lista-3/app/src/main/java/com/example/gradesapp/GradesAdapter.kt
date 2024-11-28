@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loginapp.databinding.GradesBinding
 
 
-class GradesAdapter(private val wordList: List<Pair<String, Double>>) : RecyclerView.Adapter<GradesViewHolder>() {
+class GradesAdapter(private val wordList: List<Triple<String, Double, Int>>) : RecyclerView.Adapter<GradesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GradesViewHolder {
         return GradesViewHolder(
                 GradesBinding.inflate(
@@ -20,7 +20,8 @@ class GradesAdapter(private val wordList: List<Pair<String, Double>>) : Recycler
             val currentItem = wordList[position]
             val subject = currentItem.first.toString()
             val average = currentItem.second.toString()
-            holder.bind(subject,"Średnia: "+average)
+            val num = currentItem.third.toString()
+            holder.bind(subject,"Średnia: "+average,"Liczba list: "+num)
         }
 
 
