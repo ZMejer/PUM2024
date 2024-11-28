@@ -18,6 +18,7 @@
         android:textStyle="bold"
         android:gravity="center" />
 
+
     <LinearLayout
         android:id="@+id/exercisesContainer"
         android:layout_width="match_parent"

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,22 +13,24 @@
             android:id="@+id/action_fragmentF1_to_fragmentF3"
             app:destination="@id/fragmentF3" />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentF2"
         android:name="com.example.gradesapp.FragmentF2"
         android:label="fragment_f2"
         tools:layout="@layout/fragment_f2" />
+
     <fragment
         android:id="@+id/fragmentF3"
         android:name="com.example.gradesapp.FragmentF3"
         android:label="fragment_f3"
         tools:layout="@layout/fragment_f3">
-    <argument
-        android:name="subject"
-        app:argType="string" />
+       <argument
+            android:name="subject"
+            app:argType="string" />
         <argument
-            android:name="list_count"
-            app:argType="integer"
-            />
+            android:name="listcount"
+            app:argType="integer" />
     </fragment>
+
 </navigation>

@@ -7,7 +7,9 @@ import com.example.loginapp.databinding.ExercisesBinding
 class ExercisesViewHolder(private val binding: ExercisesBinding) :
     RecyclerView.ViewHolder(binding.root){
 
-    fun bind(item: String){
-        binding.singleWord.text = item
+    fun bind(contentItem: String,pointsItem:String, idxItem:String){
+        binding.singleWord.text = contentItem
+        binding.exerciseCount.text = "Zadanie "+idxItem
+        binding.points.text = "pkt: "+pointsItem
     }
 }

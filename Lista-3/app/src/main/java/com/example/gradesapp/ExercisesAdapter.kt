@@ -18,7 +18,10 @@ class ExercisesAdapter(private val wordList: MutableList<Exercise>) : RecyclerVi
 
     override fun onBindViewHolder(holder: ExercisesViewHolder, position: Int) {
         val currentItem = wordList[position]
-        holder.bind(currentItem.toString())
+        val content = currentItem.content.toString()
+        val points = currentItem.points.toString()
+        val exerciseCount = position + 1
+        holder.bind(content,points,exerciseCount.toString())
     }
 
 }

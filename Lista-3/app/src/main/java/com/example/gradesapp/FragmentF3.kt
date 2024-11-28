@@ -1,6 +1,7 @@
 package com.example.gradesapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,13 +20,13 @@ class FragmentF3 : Fragment() {
     ): View {
         binding = FragmentF3Binding.inflate(inflater)
 
-        val subj = arguments?.getString("subject").toString()
-        val listCount = arguments?.getInt("listCount")
-
-        binding.subject.text = subj
+        val subj = arguments?.getString("subject")
+        val listCount = arguments?.getInt("listcount")?:0
+        Log.d("FragmentF3","ListCount: $listCount")
+        binding.subject.text = "$subj \n Lista $listCount"
 
         val allExerciseLists = ExerciseList.Companion.ExerciseListProvider.allExerciseLists
-        val matchingList = allExerciseLists.filter { it.subject.name == subj }[listCount!!]
+        val matchingList = allExerciseLists.filter { it.subject.name == subj }[listCount-1]
         val exercList = matchingList.exercises
         binding.recyclerView.apply {
             adapter = ExercisesAdapter(exercList)

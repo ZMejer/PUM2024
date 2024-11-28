@@ -1,6 +1,7 @@
 package com.example.gradesapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,9 +30,15 @@ class FragmentF1 : Fragment() {
                     .subList(0, currentIndex+1)
                     .count { it.subject == clickedItem.subject  }
 
+                val subList = ExerciseList.Companion.ExerciseListProvider.allExerciseLists.subList(0, currentIndex + 1)
+                val listCount2 = subList.count { it.subject == clickedItem.subject }
+                Log.d("FragmentF1","SubList: $subList")
+                Log.d("FragmentF1","ListCount: $listCount2")
+
                 val subj = clickedItem.subject.name
-                val action = FragmentF1Directions.actionFragmentF1ToFragmentF3(subj,listCount)
+                val action = FragmentF1Directions.actionFragmentF1ToFragmentF3(subj, listCount2)
                 Navigation.findNavController(requireView()).navigate(action)
+
             }
 
             layoutManager = LinearLayoutManager(requireContext())
