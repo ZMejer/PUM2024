@@ -11,8 +11,11 @@ class WordListViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: String) {
-        binding.singleWord.text = item // laczenie elementu (TextView w list.xml) z ViewHolder
+    fun bind(subjectItem: String, listNumberItem: String, exercisesNumberItem:String, gradeItem: String) {
+        binding.subject.text = subjectItem // laczenie elementu (TextView w list.xml) z ViewHolder
+        binding.listNumber.text = listNumberItem
+        binding.exercisesNumber.text = exercisesNumberItem
+        binding.grade.text = gradeItem
     }
     // od
     init {

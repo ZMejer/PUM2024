@@ -13,7 +13,7 @@ data class Exercise(
                 val randLetter = letters.random()
                 contentList.add(randLetter+"")
             }
-            val finalContent = contentList.joinToString()
+            val finalContent = contentList.joinToString("")
             val finalPoints = (0..10).random()
 
             return Exercise(finalContent,finalPoints)

@@ -23,7 +23,7 @@ class FragmentF1 : Fragment() {
 
         binding.recyclerView.apply {
             // od
-            adapter = WordListAdapter(){
+            adapter = WordListAdapter(ExerciseList.allExerciseLists){
                 Toast.makeText(requireContext(), "Clicked + $it", Toast.LENGTH_SHORT).show()
             }
             // do

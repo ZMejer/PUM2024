@@ -3,10 +3,10 @@
     <item
         android:id="@id/fragmentF1"
         android:icon="@drawable/baseline_home_24"
-        android:title="F1" />
+        android:title="Listy zadań" />
 
     <item
         android:id="@id/fragmentF2"
         android:icon="@drawable/baseline_headphones_24"
-        android:title="F2" />
+        android:title="Oceny" />
 </menu>
