@@ -21,6 +21,10 @@ data class ExerciseList(
             return ExerciseList(finalExercises, finalSubject, finalGrade)
         }
 
-        val allExerciseLists: MutableList<ExerciseList> = MutableList(20) { generateExerciseList() }
+        object ExerciseListProvider {
+            val allExerciseLists: MutableList<ExerciseList> by lazy {
+                MutableList(20) { ExerciseList.generateExerciseList() }
+            }
+        }
     }
 }

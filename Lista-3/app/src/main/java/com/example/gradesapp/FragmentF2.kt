@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.loginapp.databinding.FragmentF2Binding
 
 class FragmentF2 : Fragment() {
@@ -17,6 +18,10 @@ class FragmentF2 : Fragment() {
     ): View {
         binding = FragmentF2Binding.inflate(inflater)
 
+        binding.recyclerView.apply {
+            adapter = GradesAdapter(DataProvider.wordList)
+            layoutManager = LinearLayoutManager(requireContext())
+        }
 
         return binding.root
     }
