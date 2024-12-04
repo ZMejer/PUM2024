@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lab4"
+    namespace = "com.example.jetpackcomposebasics"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.lab4"
+        applicationId = "com.example.jetpackcomposebasics"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.storage)
+    implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

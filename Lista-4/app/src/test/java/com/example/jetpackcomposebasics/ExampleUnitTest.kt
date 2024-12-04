@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.example.jetpackcomposebasics
 
 import org.junit.Test
 
