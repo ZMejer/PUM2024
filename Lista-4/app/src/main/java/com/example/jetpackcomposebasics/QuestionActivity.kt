@@ -109,8 +109,8 @@ fun LoadQuestion() {
 
 
             Card(
-                modifier = Modifier.fillMaxWidth(0.8f)
-                    .border(BorderStroke(3.dp, Color(0xFFedeace)), RoundedCornerShape(10.dp)),
+                modifier = Modifier.
+                    border(BorderStroke(3.dp, Color(0xFFedeace)), RoundedCornerShape(10.dp)),
                 colors = CardDefaults.cardColors(
                     containerColor = Color(0xFFFAF9F1)
                 ),
@@ -118,13 +118,24 @@ fun LoadQuestion() {
             ) {
 
                 Questions.questionsList[idx.value].answers.forEachIndexed { i, answer ->
-                    Row {
-                        RadioButton(
-                            selected = isSelected.value == i,
-                            onClick = { isSelected.value = i
-                                        selectedAnswerIndex = i}
-                        )
-                        Text(text= answer, modifier=Modifier.padding(10.dp), fontSize = 20.sp)
+                    Card(modifier = Modifier.padding(10.dp).fillMaxWidth(0.75f),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color(0xFFE0E0E0)
+                        )) {
+                        Row {
+                            RadioButton(
+                                selected = isSelected.value == i,
+                                onClick = {
+                                    isSelected.value = i
+                                    selectedAnswerIndex = i
+                                }
+                            )
+                            Text(
+                                text = answer,
+                                modifier = Modifier.padding(10.dp),
+                                fontSize = 20.sp
+                            )
+                        }
                     }
 
                 }
