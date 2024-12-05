@@ -10,7 +10,7 @@ class ResultActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             // Dodaj tutaj zawartość ekranu, np. tekst, przyciski itp.
-            Text(text = "This is the second screen")
+            Text(text="$finalScoredPoints")
         }
     }
 }

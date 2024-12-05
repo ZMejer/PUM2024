@@ -64,12 +64,15 @@ class QuestionActivity : ComponentActivity() {
     }
 }
 
+var finalScoredPoints = 0
 
 @Composable
 fun LoadQuestion() {
     val context = LocalContext.current
     val idx = remember { mutableStateOf(0) }
-    val isSelected = remember { mutableStateOf(false) }
+    val isSelected = remember {mutableStateOf(-1)}
+    val scoredPoints = remember { mutableStateOf(0) }
+    var selectedAnswerIndex = -1
     if (idx.value<Questions.questionsList.size) {
         Column(
             modifier = Modifier
@@ -114,20 +117,26 @@ fun LoadQuestion() {
                 shape = RoundedCornerShape(10.dp)
             ) {
 
-                Questions.questionsList[idx.value].answers.forEach {
+                Questions.questionsList[idx.value].answers.forEachIndexed { i, answer ->
                     Row {
                         RadioButton(
-                            selected = isSelected.value,
-                            onClick = { isSelected.value = !isSelected.value }
+                            selected = isSelected.value == i,
+                            onClick = { isSelected.value = i
+                                        selectedAnswerIndex = i}
                         )
-                        Text(text= it, modifier=Modifier.padding(10.dp), fontSize = 20.sp)
+                        Text(text= answer, modifier=Modifier.padding(10.dp), fontSize = 20.sp)
                     }
 
                 }
             }
-
                 Button(
-                    onClick = { idx.value += 1 },
+                    onClick = {
+                        if (selectedAnswerIndex == Questions.questionsList[idx.value].correctAnswerIndex) {
+                            scoredPoints.value += 1
+                        }
+                        idx.value += 1
+                        isSelected.value = -1
+                    },
                     modifier = Modifier.fillMaxWidth(0.8f).size(width = 100.dp, height = 60.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFdde6c5),
@@ -144,6 +153,7 @@ fun LoadQuestion() {
         else {
             openHomepage(context)
             idx.value = 0
+            finalScoredPoints = scoredPoints.value
         }
     }
 
