@@ -6,13 +6,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,14 +29,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.fontResource
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,10 +39,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.gradesappjetpackcompose.ui.theme.GradesAppJetpackComposeTheme
 import kotlin.math.round
 
@@ -81,14 +74,6 @@ fun Navigation(){
         bottomBar = { BottomMenu(navController = navController)},
         content = { BottomNavGraph(navController = navController) }
     )
-    /*
-    NavHost(navController = navController, startDestination = Screens.E1.route) {
-        composable(route = Screens.E1.route){
-            E1{navController.navigate(Screens.E3.route)}
-        }
-    }
-    */
-
 }
 @Composable
 fun BottomNavGraph(navController: NavHostController){
@@ -96,7 +81,22 @@ fun BottomNavGraph(navController: NavHostController){
         navController = navController,
         startDestination = Screens.E1.route
     ) {
-        composable(route = Screens.E1.route){ E1() }
+        composable(route = Screens.E1.route) { E1(onE3 = { listNumber, subject, index ->
+            navController.navigate("${Screens.E3.route}/$listNumber/$subject/$index")
+        }) }
+        composable(
+            route = "${Screens.E3.route}/{listNumber}/{subject}/{index}",
+            arguments = listOf(
+                navArgument("listNumber") { type = NavType.IntType },
+                navArgument("subject") { type = NavType.StringType },
+                navArgument("index") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val listNumber = backStackEntry.arguments?.getInt("listNumber") ?: 0
+            val subject = backStackEntry.arguments?.getString("subject") ?: ""
+            val index = backStackEntry.arguments?.getInt("index") ?: 0
+            E3(listNumber, subject,index)
+        }
         composable(route = Screens.E2.route){ E2() }
     }
 }
@@ -162,7 +162,7 @@ fun E2() {
                             .padding(10.dp))
                 }
                 if (index < grades.size - 1) {
-                    Spacer(modifier = Modifier.height(20.dp))  // Adjust the height as needed
+                    Spacer(modifier = Modifier.height(20.dp))
                 }
             }
         }
@@ -171,14 +171,56 @@ fun E2() {
 }
 
 @Composable
-fun E3() {
-    Text(text="LOL")
-}
-
-@Composable
-fun E1() {
+fun E3(listNumber: Int, subject: String, index: Int) {
+    val exercises = ExerciseList.Companion.ExerciseListProvider.allExerciseLists[index].exercises
     Column(
-        Modifier.fillMaxSize().padding(top = 50.dp, bottom = 100.dp),
+        Modifier.fillMaxSize().padding(top = 50.dp, bottom = 130.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        Text(
+            text = subject,
+            fontSize = 40.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            text = "Lista $listNumber",
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+        )
+        LazyColumn {
+            items(exercises.size) { idx ->
+                val points = exercises[idx].points
+                val content = exercises[idx].content
+                Card(
+                    modifier = Modifier.
+                    fillMaxWidth(0.9f).
+                    padding(top=25.dp).
+                    border(BorderStroke(3.dp, Color(0xFFedeace)), RoundedCornerShape(10.dp)),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFFAF9F1)
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                ){
+                    Text(text="pkt: $points", modifier = Modifier.padding(20.dp).fillMaxWidth(),
+                        fontSize = 22.sp, textAlign = TextAlign.Right,)
+                    Text(text="Zadanie ${idx+1}", modifier = Modifier.padding(start = 20.dp),
+                        fontSize = 30.sp)
+                    Text(text=content, modifier = Modifier.padding(20.dp),
+                        fontSize = 20.sp)
+
+                }
+            }
+        }
+
+    }
+}
+@Composable
+fun E1(onE3: (Int, String, Int) -> Unit) {
+    Column(
+        Modifier.fillMaxSize().padding(top = 50.dp, bottom = 130.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(30.dp)
     ) {
@@ -204,7 +246,7 @@ fun E1() {
                         containerColor = Color(0xFFFAF9F1)
                     ),
                     shape = RoundedCornerShape(10.dp),
-                    //onClick = onE3
+                    onClick = { onE3(listNumber, subjectName, index) }
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth()
@@ -247,7 +289,7 @@ fun E1() {
 
                 }
                 if (index < exercises.size - 1) {
-                    Spacer(modifier = Modifier.height(20.dp))  // Adjust the height as needed
+                    Spacer(modifier = Modifier.height(20.dp))
                 }
             }
         }
