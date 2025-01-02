@@ -18,13 +18,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.studentsapp.ui.theme.StudentsAppTheme
 
 
-object DataProvider {
-    val words: List<String> = listOf(
-        "dom", "ojciec", "matka", "piękno", "ból", "szkoła", "miłość",
-        "praca", "twarz", "noc", "dzień", "stół", "kawa", "pies", "kot"
-    )
-}
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

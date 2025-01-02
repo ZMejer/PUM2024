@@ -13,10 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.studentsapp.ui.theme.StudentsAppTheme
 import androidx.compose.foundation.clickable
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
 fun StudentsList(onStudentClick: (String) -> Unit) {
+    val viewModel: StudentViewModel = viewModel()
     Column(
         modifier = Modifier
             .fillMaxSize() 
@@ -31,10 +33,10 @@ fun StudentsList(onStudentClick: (String) -> Unit) {
             modifier=Modifier.padding(20.dp)
         )
         LazyColumn {
-            items(StudentsData.students.size) { index ->
-                val student = StudentsData.students[index]
+            items(viewModel.students.size) { index ->
+                val student = viewModel.students[index]
                 Card(modifier = Modifier.padding(10.dp).fillMaxWidth().clickable {
-                    onStudentClick(student.index.toString())
+                    onStudentClick(student.index)
                 }){
                     Text(
                         text = "${student.name} ${student.surname}",

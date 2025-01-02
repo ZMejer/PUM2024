@@ -9,14 +9,14 @@ import androidx.navigation.compose.rememberNavController
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screens.StudentList.route) {
-        composable(route = Screens.StudentList.route){
-            val arg = 5
-            StudentsList{navController.navigate(Screens.StudentDetails.route + "/$arg")}
+        composable(route = Screens.StudentList.route) {
+            StudentsList { studentIndex ->
+                navController.navigate(Screens.StudentDetails.route + "/$studentIndex")
+            }
         }
-
-        composable(route = Screens.StudentDetails.route + "/{arg}"){
-            val arg = it.arguments?.getString("arg")
-            StudentDetails(arg) {navController.popBackStack()}
+        composable(route = Screens.StudentDetails.route + "/{arg}") { backStackEntry ->
+            val arg = backStackEntry.arguments?.getString("arg")
+            StudentDetails(arg) { navController.popBackStack() }
         }
     }
 }
