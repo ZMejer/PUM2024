@@ -12,9 +12,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.studentsapp.ui.theme.StudentsAppTheme
+import androidx.compose.foundation.clickable
+
 
 @Composable
-fun StudentsList() {
+fun StudentsList(onStudentClick: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize() 
@@ -31,7 +33,9 @@ fun StudentsList() {
         LazyColumn {
             items(StudentsData.students.size) { index ->
                 val student = StudentsData.students[index]
-                Card(modifier = Modifier.padding(10.dp).fillMaxWidth()){
+                Card(modifier = Modifier.padding(10.dp).fillMaxWidth().clickable {
+                    onStudentClick(student.index.toString())
+                }){
                     Text(
                         text = "${student.name} ${student.surname}",
                         modifier=Modifier.padding(top=20.dp, start=20.dp,end=20.dp),
@@ -46,13 +50,5 @@ fun StudentsList() {
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun StudentsPreview() {
-    StudentsAppTheme {
-        StudentsList()
     }
 }
