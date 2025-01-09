@@ -18,7 +18,6 @@ class GradeViewModel(application: Application) : ViewModel() {
         val db = GradeDatabase.getDatabase(application)
         val dao = db.gradeDao()
         repository = GradeRepository(dao)
-
         fetchGrades()
     }
 
@@ -47,4 +46,20 @@ class GradeViewModel(application: Application) : ViewModel() {
             repository.addAll(grades)
         }
     }
+
+    private fun calculateAverage(): Float {
+        val gradeNum = _gradesState.value.size
+        if (gradeNum == 0) {
+            return 0f
+        }
+        var gradeSum = 0f
+        _gradesState.value.forEach { grade ->
+            gradeSum += grade.grade
+        }
+        return gradeSum / gradeNum
+    }
+
+    val average: Float
+        get() = calculateAverage()
+
 }
