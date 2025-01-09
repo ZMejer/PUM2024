@@ -13,7 +13,7 @@ fun Navigation() {
         composable(route = Screens.MainScreen.route){
             MainScreen(
                 onInsertScreen = {navController.navigate(Screens.InsertScreen.route)},
-                onUpdateScreen = {navController.navigate(Screens.UpdateScreen.route)}
+                onUpdateScreen = {idx -> navController.navigate(Screens.UpdateScreen.route+"/$idx")}
             )
         }
 
@@ -21,8 +21,10 @@ fun Navigation() {
             InsertScreen{navController.popBackStack()}
         }
 
-        composable(route = Screens.UpdateScreen.route){
-            UpdateScreen{navController.popBackStack()}
+        composable(route = Screens.UpdateScreen.route + "/{arg}"){ backStackEntry ->
+            val arg = backStackEntry.arguments?.getString("arg")
+            UpdateScreen(arg){navController.popBackStack()}
+
         }
     }
 }

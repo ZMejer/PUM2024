@@ -47,6 +47,12 @@ class GradeViewModel(application: Application) : ViewModel() {
         }
     }
 
+    fun deleteGrade(grade: Grade) {
+        viewModelScope.launch {
+            repository.delete(grade)
+        }
+    }
+
     private fun calculateAverage(): Float {
         val gradeNum = _gradesState.value.size
         if (gradeNum == 0) {

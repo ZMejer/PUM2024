@@ -41,6 +41,7 @@ interface GradeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(grade: Grade)
 
+
     @Query("DELETE FROM grades_table")
     suspend fun deleteAll()
 
@@ -49,5 +50,8 @@ interface GradeDao {
 
     @Update
     suspend fun update(grade: Grade)
+
+    @Query("DELETE FROM grades_table WHERE id=:gradeId")
+    fun deleteById(gradeId : Int)
 
 }

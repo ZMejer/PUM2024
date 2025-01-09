@@ -6,11 +6,15 @@ class GradeRepository(private val gradeDao: GradeDao) {
 
     suspend fun clear() = gradeDao.deleteAll()
 
-    suspend fun add(user: Grade) = gradeDao.insert(user)
+    suspend fun add(grade: Grade) = gradeDao.insert(grade)
 
     suspend fun addAll(grades: List<Grade>) {
         grades.forEach { grade ->
             gradeDao.insert(grade)
         }
     }
+
+    // suspend fun delete(id: Int) = gradeDao.deleteById(id)
+
+    suspend fun delete(grade: Grade) = gradeDao.delete(grade)
 }

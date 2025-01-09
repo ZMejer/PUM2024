@@ -35,7 +35,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.absoluteValue
 
 @Composable
-fun MainScreen(onInsertScreen: () -> Unit, onUpdateScreen: () -> Unit){
+fun MainScreen(onInsertScreen: () -> Unit, onUpdateScreen: (String) -> Unit){
     val viewModel: GradeViewModel = viewModel(
         LocalViewModelStoreOwner.current!!,
         "GradeViewModel",
@@ -61,7 +61,7 @@ fun MainScreen(onInsertScreen: () -> Unit, onUpdateScreen: () -> Unit){
                         .padding(bottom=15.dp,start=20.dp, end=20.dp)
                         .height(80.dp)
                         .border(2.dp, Color(0xFFb8a9c7), RoundedCornerShape(16.dp))
-                        .clickable {onUpdateScreen()}
+                        .clickable {onUpdateScreen(grades[it].id.toString())}
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
