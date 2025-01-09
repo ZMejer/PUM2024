@@ -33,7 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.absoluteValue
 
 @Composable
-fun MainScreen(){
+fun MainScreen(onInsertScreen: () -> Unit){
     val viewModel: GradeViewModel = viewModel(
         LocalViewModelStoreOwner.current!!,
         "GradeViewModel",
@@ -87,7 +87,7 @@ fun MainScreen(){
         }
         Card(
             modifier = Modifier
-                .padding(bottom=30.dp,start=20.dp, end=20.dp)
+                .padding(bottom=30.dp,start=20.dp, end=20.dp, top=30.dp)
                 .height(120.dp)
                 .border(2.dp,Color(0xFFb8a9c7), RoundedCornerShape(16.dp))
         ){
@@ -115,7 +115,7 @@ fun MainScreen(){
             }
         }
         Column(modifier = Modifier.padding(start=20.dp,end = 20.dp, bottom= 30.dp)){
-            Button(onClick = { },
+            Button(onClick = { onInsertScreen() },
                 modifier = Modifier.height(80.dp).fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp)) {
                 Text("NOWY", fontSize = 29.sp)
@@ -124,8 +124,3 @@ fun MainScreen(){
     }
 }
 
-@Preview
-@Composable
-fun MainScreenPreview() {
-    MainScreen()
-}
