@@ -2,6 +2,7 @@ package com.example.lista8
 
 import android.app.Application
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,7 +35,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.absoluteValue
 
 @Composable
-fun MainScreen(onInsertScreen: () -> Unit){
+fun MainScreen(onInsertScreen: () -> Unit, onUpdateScreen: () -> Unit){
     val viewModel: GradeViewModel = viewModel(
         LocalViewModelStoreOwner.current!!,
         "GradeViewModel",
@@ -59,6 +61,7 @@ fun MainScreen(onInsertScreen: () -> Unit){
                         .padding(bottom=15.dp,start=20.dp, end=20.dp)
                         .height(80.dp)
                         .border(2.dp, Color(0xFFb8a9c7), RoundedCornerShape(16.dp))
+                        .clickable {onUpdateScreen()}
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
