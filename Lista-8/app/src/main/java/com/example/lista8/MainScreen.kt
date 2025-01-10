@@ -77,7 +77,7 @@ fun MainScreen(onInsertScreen: () -> Unit, onUpdateScreen: (String) -> Unit){
                                     .padding(start=20.dp)
                             )
                             Text(
-                                text = "${grades[it].grade} ${grades[it].id}",
+                                text = "${grades[it].grade}",
                                 fontSize = 29.sp,
                                 textAlign = TextAlign.Right,
                                 modifier = Modifier

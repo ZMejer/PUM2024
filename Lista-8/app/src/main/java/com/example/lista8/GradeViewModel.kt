@@ -3,6 +3,7 @@ package com.example.lista8
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -29,6 +30,10 @@ class GradeViewModel(application: Application) : ViewModel() {
         }
     }
 
+    fun getGradeById(id: Int): Grade? {
+        return _gradesState.value.find { it.id == id }
+    }
+
     fun clearGrades() {
         viewModelScope.launch {
             repository.clear()
@@ -50,6 +55,12 @@ class GradeViewModel(application: Application) : ViewModel() {
     fun deleteGrade(grade: Grade) {
         viewModelScope.launch {
             repository.delete(grade)
+        }
+    }
+
+    fun updateGrade(grade: Grade) {
+        viewModelScope.launch {
+            repository.update(grade)
         }
     }
 
